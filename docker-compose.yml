@@ -1,0 +1,41 @@
+version: '3.7'
+
+services:
+  banker:
+    container_name: banker
+    working_dir: /var/www/html
+    image: node:14-alpine
+    volumes:
+      - .:/var/www/html
+    ports:
+      - 3000:3000
+    command: npm run start:dev
+    links:
+      - mysql
+      - redis
+
+  mysql:
+    image: mysql:5.7
+    volumes:
+      - mysql:/var/lib/mysql
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: password
+      MYSQL_DATABASE: banker
+      MYSQL_USER: root
+      MYSQL_PASSWORD: password
+    ports:
+      - 3306:3306
+
+  redis:
+    image: bitnami/redis:latest
+    environment:
+      - ALLOW_EMPTY_PASSWORD=yes
+    volumes:
+      - redis:/bitnami/redis/data
+
+volumes:
+  mysql:
+    driver: local
+  redis:
+    driver: local

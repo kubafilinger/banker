@@ -29,3 +29,15 @@ $ npm run test:e2e
 # test coverage
 $ npm run test:cov
 ```
+
+## TypeORM
+
+### Generate migration
+```
+npm run typeorm migration:generate -- -n DeviceModel
+```
+### Run migrations
+
+```
+npm run typeorm migration:run
+```

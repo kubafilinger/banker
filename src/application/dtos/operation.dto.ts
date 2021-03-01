@@ -1,10 +1,5 @@
 import { OperationType } from '../../domain/operation.entity';
-import {
-  IsEnum,
-  IsNotEmpty,
-  IsNumber,
-  ValidateIf,
-} from 'class-validator';
+import { IsEnum, IsNotEmpty, IsNumber, ValidateIf } from 'class-validator';
 
 export class OperationDto {
   @IsEnum(OperationType)
@@ -14,7 +9,7 @@ export class OperationDto {
   amount: number;
 
   @IsNotEmpty()
-  senderAccountNumber: string;
+  accountNumber: string;
 
   @ValidateIf((dto) => dto.operationType === OperationType.TRANSFER)
   @IsNotEmpty()
