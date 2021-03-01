@@ -4,14 +4,28 @@ export enum OperationType {
   TRANSFER = 'transfer',
 }
 
-export class OperationEntity {
+export class Operation {
   id: string;
 
   amount: number;
 
-  userId: string;
+  senderId: string;
 
-  receiverId: string;
+  receiverId: string | null;
 
   type: OperationType;
+
+  constructor(
+    id: string,
+    amount: number,
+    senderId: string,
+    type: OperationType,
+    receiverId?: string,
+  ) {
+    this.id = id;
+    this.amount = amount;
+    this.senderId = senderId;
+    this.type = type;
+    this.receiverId = receiverId;
+  }
 }

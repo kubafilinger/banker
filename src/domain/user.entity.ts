@@ -1,4 +1,4 @@
-export class OperationEntity {
+export class UserEntity {
   id: string;
 
   amount: number;
