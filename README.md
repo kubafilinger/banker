@@ -34,7 +34,7 @@ $ npm run test:cov
 
 ### Generate migration
 ```
-npm run typeorm migration:generate -- -n DeviceModel
+npm run typeorm migration:generate -- -n MigrationName
 ```
 ### Run migrations
 
