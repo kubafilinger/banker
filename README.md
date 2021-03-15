@@ -2,6 +2,7 @@
 
 ```bash
 $ npm install
+$ npm run migration
 ```
 
 ## Running the app

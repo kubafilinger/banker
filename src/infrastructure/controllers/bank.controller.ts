@@ -46,9 +46,9 @@ export class BankController {
 
       validator.validate(operation);
 
-      await this.operationsQueue.add(operationDto.operationType, operation);
+      this.operationsQueue.add(operationDto.operationType, operation);
 
-      return res.status(202);
+      return res.status(HttpStatus.ACCEPTED).send();
     } catch (e) {
       return res.status(HttpStatus.BAD_REQUEST).json({
         error: {
