@@ -4,11 +4,13 @@ import { UsersRepository } from '../repositories/users.repository';
 import { UserDto } from '../../application/dtos/user.dto';
 import { User } from '../../domain/user.entity';
 import { v4 as generateUuid } from 'uuid';
+import { ApiResponse, ApiTags } from '@nestjs/swagger';
 
 @Controller('/users')
 export class UsersController {
   constructor(private readonly repository: UsersRepository) {}
 
+  @ApiTags('users')
   @Get()
   async list(@Res() res: Response) {
     try {
@@ -22,6 +24,9 @@ export class UsersController {
     }
   }
 
+  @ApiTags('users')
+  @ApiResponse({ status: 201, description: 'Created' })
+  @ApiResponse({ status: 400, description: 'Error' })
   @Post()
   async create(@Res() res: Response, @Body() userDto: UserDto) {
     try {
