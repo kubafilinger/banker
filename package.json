@@ -33,6 +33,7 @@
     "class-transformer": "^0.4.0",
     "class-validator": "^0.13.1",
     "dotenv": "^8.2.0",
+    "getenv": "^1.0.0",
     "mysql2": "^2.2.5",
     "rimraf": "^3.0.2",
     "rxjs": "^6.6.3",
