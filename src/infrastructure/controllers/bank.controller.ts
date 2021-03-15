@@ -8,6 +8,7 @@ import { v4 as generateUuid } from 'uuid';
 import { UsersRepository } from '../repositories/users.repository';
 import { ModuleRef } from '@nestjs/core';
 import { OperationValidator } from '../../domain/specifications/operation.validator';
+import { ApiResponse, ApiTags } from '@nestjs/swagger';
 
 @Controller('/operations')
 export class BankController {
@@ -17,6 +18,9 @@ export class BankController {
     private moduleRef: ModuleRef,
   ) {}
 
+  @ApiTags('bank-operations')
+  @ApiResponse({ status: 202, description: 'Success' })
+  @ApiResponse({ status: 400, description: 'Error' })
   @Post()
   async operation(@Res() res: Response, @Body() operationDto: OperationDto) {
     try {
@@ -44,7 +48,7 @@ export class BankController {
 
       await this.operationsQueue.add(operationDto.operationType, operation);
 
-      return res.status(204).json(operationDto);
+      return res.status(202);
     } catch (e) {
       return res.status(HttpStatus.BAD_REQUEST).json({
         error: {
