@@ -14,8 +14,9 @@ import { DepositOperationValidator } from './domain/specifications/deposit-opera
   imports: [
     BullModule.forRoot({
       redis: {
-        host: 'redis',
-        port: 6379,
+        host: process.env.REDIS_HOST,
+        port: parseInt(process.env.REDIS_PORT, 10),
+        password: process.env.REDIS_PASSWORD,
       },
     }),
     BullModule.registerQueue({
@@ -23,11 +24,11 @@ import { DepositOperationValidator } from './domain/specifications/deposit-opera
     }),
     TypeOrmModule.forRoot({
       type: 'mysql',
-      host: 'mysql',
-      port: 3306,
-      username: 'root',
-      password: 'password',
-      database: 'banker',
+      host: process.env.DATABASE_HOST,
+      port: parseInt(process.env.DATABASE_PORT, 10),
+      username: process.env.DATABASE_USERNAME,
+      password: process.env.DATABASE_PASSWORD,
+      database: process.env.DATABASE_NAME,
       autoLoadEntities: true,
     }),
     TypeOrmModule.forFeature([User]),
