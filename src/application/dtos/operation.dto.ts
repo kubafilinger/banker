@@ -1,5 +1,11 @@
 import { OperationType } from '../../domain/operation.entity';
-import { IsEnum, IsNotEmpty, IsNumber, ValidateIf } from 'class-validator';
+import {
+  IsEnum,
+  IsNotEmpty,
+  IsNumber,
+  IsOptional,
+  ValidateIf,
+} from 'class-validator';
 import { ApiProperty } from '@nestjs/swagger';
 
 export class OperationDto {
@@ -15,7 +21,10 @@ export class OperationDto {
   @IsNotEmpty()
   accountNumber: string;
 
-  @ApiProperty({ example: 'only if operation type is transfer' })
+  @ApiProperty({
+    example: 'only if operation type is transfer',
+    required: false,
+  })
   @ValidateIf((dto) => dto.operationType === OperationType.TRANSFER)
   @IsNotEmpty()
   receiverAccountNumber: string | null;
