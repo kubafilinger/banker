@@ -9,15 +9,16 @@ import { UsersController } from './infrastructure/controllers/users.controller';
 import { WithdrawalOperationValidator } from './domain/specifications/withdrawal-operation.validator';
 import { TransferOperationValidator } from './domain/specifications/transfer-operation.validator';
 import { DepositOperationValidator } from './domain/specifications/deposit-operation.validator';
+import * as getenv from 'getenv';
 import { LogsController } from './infrastructure/controllers/logs.controller';
 
 @Module({
   imports: [
     BullModule.forRoot({
       redis: {
-        host: process.env.REDIS_HOST,
-        port: parseInt(process.env.REDIS_PORT, 10),
-        password: process.env.REDIS_PASSWORD,
+        host: getenv('REDIS_HOST'),
+        port: parseInt(getenv('REDIS_PORT'), 10),
+        password: getenv('REDIS_PASSWORD'),
       },
     }),
     BullModule.registerQueue({
@@ -25,11 +26,11 @@ import { LogsController } from './infrastructure/controllers/logs.controller';
     }),
     TypeOrmModule.forRoot({
       type: 'mysql',
-      host: process.env.DATABASE_HOST,
-      port: parseInt(process.env.DATABASE_PORT, 10),
-      username: process.env.DATABASE_USERNAME,
-      password: process.env.DATABASE_PASSWORD,
-      database: process.env.DATABASE_NAME,
+      host: getenv('DATABASE_HOST'),
+      port: parseInt(getenv('DATABASE_PORT'), 10),
+      username: getenv('DATABASE_USERNAME'),
+      password: getenv('DATABASE_PASSWORD'),
+      database: getenv('DATABASE_NAME'),
       autoLoadEntities: true,
     }),
     TypeOrmModule.forFeature([User]),
