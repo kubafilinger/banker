@@ -12,6 +12,7 @@ import { DepositOperationValidator } from './domain/specifications/deposit-opera
 import * as getenv from 'getenv';
 import { LogsController } from './infrastructure/controllers/logs.controller';
 import * as dotenv from 'dotenv';
+import { LoginController } from './infrastructure/controllers/login.controller';
 dotenv.config();
 
 @Module({
@@ -37,7 +38,12 @@ dotenv.config();
     }),
     TypeOrmModule.forFeature([User]),
   ],
-  controllers: [BankController, UsersController, LogsController],
+  controllers: [
+    BankController,
+    UsersController,
+    LogsController,
+    LoginController,
+  ],
   providers: [
     OperationsProcessor,
     UsersRepository,

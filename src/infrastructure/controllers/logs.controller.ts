@@ -1,7 +1,6 @@
 import { Controller, Get, HttpStatus, Res } from '@nestjs/common';
 import { Response } from 'express';
 import * as fs from 'fs';
-import * as path from 'path';
 import { ApiTags } from '@nestjs/swagger';
 
 @Controller('/logs')

@@ -22,6 +22,12 @@ export class UsersRepository {
     return await this.repository.findOneOrFail({ accountNumber });
   }
 
+  async findByIdentificationNumber(
+    identificationNumber: string,
+  ): Promise<User> {
+    return await this.repository.findOneOrFail({ identificationNumber });
+  }
+
   async findById(id: string): Promise<User> {
     return await this.repository.findOneOrFail(id);
   }

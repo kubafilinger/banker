@@ -1,4 +1,12 @@
-import { Body, Controller, Get, HttpStatus, Post, Res } from '@nestjs/common';
+import {
+  Body,
+  Controller,
+  Get,
+  HttpStatus,
+  Param,
+  Post,
+  Res,
+} from '@nestjs/common';
 import { Response } from 'express';
 import { UsersRepository } from '../repositories/users.repository';
 import { UserDto } from '../../application/dtos/user.dto';
@@ -17,6 +25,29 @@ export class UsersController {
       return res.status(200).send(await this.repository.users());
     } catch (e) {
       return res.status(HttpStatus.BAD_REQUEST).json({
+        error: {
+          message: e.message,
+        },
+      });
+    }
+  }
+
+  @ApiTags('users')
+  @Get(':identificationNumber')
+  async getOne(
+    @Res() res: Response,
+    @Param('identificationNumber') identificationNumber: string,
+  ) {
+    try {
+      return res
+        .status(200)
+        .send(
+          await this.repository.findByIdentificationNumber(
+            identificationNumber,
+          ),
+        );
+    } catch (e) {
+      return res.status(HttpStatus.NOT_FOUND).json({
         error: {
           message: e.message,
         },
