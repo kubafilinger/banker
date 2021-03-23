@@ -42,3 +42,12 @@ npm run typeorm migration:generate -- -n MigrationName
 ```
 npm run typeorm migration:run
 ```
+
+## Deploy
+```
+npm i
+npm run build
+cp .env dist/.env
+mv dist/main.js dist/app.js
+devil www restart banker.kubafilinger.pl
+```
