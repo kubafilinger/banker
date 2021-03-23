@@ -9,6 +9,7 @@ import { UsersController } from './infrastructure/controllers/users.controller';
 import { WithdrawalOperationValidator } from './domain/specifications/withdrawal-operation.validator';
 import { TransferOperationValidator } from './domain/specifications/transfer-operation.validator';
 import { DepositOperationValidator } from './domain/specifications/deposit-operation.validator';
+import { LogsController } from './infrastructure/controllers/logs.controller';
 
 @Module({
   imports: [
@@ -33,7 +34,7 @@ import { DepositOperationValidator } from './domain/specifications/deposit-opera
     }),
     TypeOrmModule.forFeature([User]),
   ],
-  controllers: [BankController, UsersController],
+  controllers: [BankController, UsersController, LogsController],
   providers: [
     OperationsProcessor,
     UsersRepository,
