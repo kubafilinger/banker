@@ -1,11 +1,5 @@
 import { OperationType } from '../../domain/operation.entity';
-import {
-  IsEnum,
-  IsNotEmpty,
-  IsNumber,
-  IsOptional,
-  ValidateIf,
-} from 'class-validator';
+import { IsEnum, IsNotEmpty, IsNumber, ValidateIf } from 'class-validator';
 import { ApiProperty } from '@nestjs/swagger';
 
 export class OperationDto {
