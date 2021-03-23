@@ -11,6 +11,8 @@ import { TransferOperationValidator } from './domain/specifications/transfer-ope
 import { DepositOperationValidator } from './domain/specifications/deposit-operation.validator';
 import * as getenv from 'getenv';
 import { LogsController } from './infrastructure/controllers/logs.controller';
+import * as dotenv from 'dotenv';
+dotenv.config();
 
 @Module({
   imports: [
